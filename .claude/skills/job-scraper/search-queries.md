@@ -10,15 +10,21 @@ The `site:` query templates in this file are the **WebSearch fallback** for port
 
 ## Search Sites
 
-Primary:
-- **linkedin.com/jobs** - primary surface for Egypt, GCC, and worldwide remote AI roles
-- **wuzzuf.net/jobs** - Egypt-focused fallback for Cairo and Egypt-based roles
-- **wellfound.com/jobs** - startup-focused fallback for remote AI product and applied GenAI roles
-- **bayt.com/en/jobs** - GCC-focused fallback for UAE, Saudi Arabia, Qatar, Bahrain, Kuwait, and Jordan roles
+Primary (CLI-backed, run first by `/scrape`):
+- **linkedin-search** - the workhorse for all three buckets: Middle East, Europe, and worldwide remote. Takes an explicit `--location`, so one CLI covers every target market.
+- **freehire-search** - multi-country aggregator over ~50 ATS platforms; good European and remote coverage.
+- **wuzzuf-search** - Egypt (and some Saudi) roles. Home-market depth.
 
-Secondary:
-- Direct Google `site:` searches for company career pages
-- Greenhouse, Lever, and Ashby-hosted company postings when a company is already targeted
+WebSearch `site:` fallback (portals without a CLI):
+- **wellfound.com/jobs** - startup / remote AI product roles
+- **weworkremotely.com** and **remoteok.com** - remote-only boards
+- **eu.jobs**, **euraxess.ec.europa.eu** - European postings, often sponsorship-friendly
+- Greenhouse, Lever, and Ashby-hosted postings when a company is already targeted
+
+Known-blocked, do not spend requests on these (see `wuzzuf-search/url-reference.md`):
+- **bayt.com** - Cloudflare WAF `403`
+- **naukrigulf.com** - Akamai edge block
+- **gulftalent.com** - Akamai `Access Denied`
 
 ## Query Categories
 
@@ -28,44 +34,46 @@ Queries are grouped by priority. Write **each category in every language from yo
 
 ### Priority 1: Core AI Engineer Titles
 
-These are the highest-priority titles and should be searched first across Cairo, Egypt, GCC, and worldwide remote roles.
+Highest-priority titles. Run across all three in-scope buckets: Middle East, Europe, worldwide remote.
 
 ```text
-site:linkedin.com/jobs "AI Engineer" ("Cairo" OR "Egypt")
-site:linkedin.com/jobs "Junior AI Engineer" ("Cairo" OR "Egypt")
-site:linkedin.com/jobs "Junior AI/ML Engineer" ("Egypt" OR "UAE" OR "Saudi Arabia" OR "Qatar" OR "Bahrain" OR "Kuwait" OR "Jordan")
-site:linkedin.com/jobs "Applied AI Engineer" ("Egypt" OR "UAE" OR "Saudi Arabia" OR "Qatar" OR "Bahrain" OR "Kuwait" OR "Jordan")
-site:linkedin.com/jobs "Generative AI Engineer" ("Egypt" OR "UAE" OR "Remote")
-site:wuzzuf.net/jobs "AI Engineer" Cairo
-site:bayt.com/en/jobs "AI Engineer" ("UAE" OR "Saudi Arabia" OR "Qatar")
+site:linkedin.com/jobs "AI Engineer" "Remote"
+site:linkedin.com/jobs "AI Engineer" ("Egypt" OR "UAE" OR "Saudi Arabia" OR "Qatar" OR "Bahrain" OR "Kuwait" OR "Oman" OR "Jordan")
+site:linkedin.com/jobs "AI Engineer" ("Netherlands" OR "Germany" OR "Ireland" OR "United Kingdom" OR "Spain" OR "Portugal" OR "Poland" OR "Sweden" OR "Switzerland" OR "Europe")
+site:linkedin.com/jobs "Applied AI Engineer" ("Remote" OR "Egypt" OR "UAE" OR "Germany" OR "Netherlands")
+site:linkedin.com/jobs "Generative AI Engineer" ("Remote" OR "Europe" OR "UAE")
+site:linkedin.com/jobs "AI Engineer" ("visa sponsorship" OR "relocation") ("Netherlands" OR "Germany" OR "Ireland" OR "United Kingdom" OR "Spain" OR "Portugal" OR "Poland" OR "Sweden" OR "Switzerland" OR "Europe")
 site:wellfound.com/jobs "AI Engineer" "Remote"
+site:weworkremotely.com "AI Engineer"
 ```
 
 ### Priority 2: LLM / RAG / Agentic Systems
 
-These align with LangGraph, AI agents, production RAG systems, and LLM application engineering.
+Aligned with LangGraph, AI agents, production RAG, and LLM application engineering.
 
 ```text
-site:linkedin.com/jobs "LLM Engineer" ("Remote" OR "Egypt" OR "UAE" OR "Saudi Arabia" OR "Qatar" OR "Bahrain" OR "Kuwait" OR "Jordan")
-site:linkedin.com/jobs "RAG Engineer" ("Remote" OR "Egypt" OR "UAE")
+site:linkedin.com/jobs "LLM Engineer" "Remote"
+site:linkedin.com/jobs "LLM Engineer" ("Netherlands" OR "Germany" OR "Ireland" OR "United Kingdom" OR "Spain" OR "Portugal" OR "Poland" OR "Sweden" OR "Switzerland" OR "Europe")
+site:linkedin.com/jobs "LLM Engineer" ("Egypt" OR "UAE" OR "Saudi Arabia" OR "Qatar" OR "Bahrain" OR "Kuwait" OR "Oman" OR "Jordan")
+site:linkedin.com/jobs "RAG Engineer" ("Remote" OR "Europe" OR "UAE")
 site:linkedin.com/jobs "LangGraph" "AI Engineer" "Remote"
-site:linkedin.com/jobs "AI agents" "Python" ("Remote" OR "UAE")
-site:linkedin.com/jobs "Generative AI Engineer" "RAG" ("Remote" OR "Saudi Arabia")
+site:linkedin.com/jobs "AI agents" "Python" ("Remote" OR "Europe")
 site:linkedin.com/jobs "vector database" "LLM Engineer" "Remote"
+site:remoteok.com "LLM Engineer"
 site:wellfound.com/jobs "LLM Engineer" "Remote"
 ```
 
 ### Priority 3: ML / NLP / Research Entry Roles
 
-These capture adjacent core titles that still match the target stack and juniority level.
+Adjacent titles that still match the target stack and seniority.
 
 ```text
-site:linkedin.com/jobs "Machine Learning Engineer" ("Cairo" OR "Egypt" OR "Jordan")
-site:linkedin.com/jobs "ML Specialist" ("Egypt" OR "UAE" OR "Saudi Arabia")
-site:linkedin.com/jobs "NLP Engineer" ("Egypt" OR "Remote")
-site:linkedin.com/jobs "AI Research Intern" ("Egypt" OR "UAE" OR "Remote")
-site:wuzzuf.net/jobs "Machine Learning Engineer" Cairo
-site:wuzzuf.net/jobs "NLP Engineer" Cairo
+site:linkedin.com/jobs "Machine Learning Engineer" "Remote"
+site:linkedin.com/jobs "Machine Learning Engineer" ("Egypt" OR "UAE" OR "Saudi Arabia" OR "Qatar" OR "Bahrain" OR "Kuwait" OR "Oman" OR "Jordan")
+site:linkedin.com/jobs "Machine Learning Engineer" ("Netherlands" OR "Germany" OR "Ireland" OR "United Kingdom" OR "Spain" OR "Portugal" OR "Poland" OR "Sweden" OR "Switzerland" OR "Europe")
+site:linkedin.com/jobs "NLP Engineer" ("Remote" OR "Europe" OR "Egypt")
+site:linkedin.com/jobs "Data Scientist" "LLM" ("Remote" OR "Europe")
+site:linkedin.com/jobs "ML Engineer" ("visa sponsorship" OR "relocation") ("Netherlands" OR "Germany" OR "Ireland" OR "United Kingdom" OR "Spain" OR "Portugal" OR "Poland" OR "Sweden" OR "Switzerland" OR "Europe")
 site:wellfound.com/jobs "Machine Learning Engineer" "Remote"
 ```
 
@@ -101,32 +109,59 @@ site:[company-domain] careers "Machine Learning Engineer"
 
 ## Location Filter
 
-Base assumptions from the CV:
+**Scope (set by the user, 2026-09-05): Middle East + Europe + worldwide remote.** Anything
+outside these three buckets is out of scope and should be skipped, not flagged.
+
+Base facts from the CV:
 - Home base: **Cairo, Egypt**
-- Remote roles are relevant because the current role is remote
-- Cairo-based onsite or hybrid roles are relevant
-- GCC-based roles are in scope
+- The current role is **remote**, so remote-first positions are a natural fit
+- No visa, relocation, or commute constraints are recorded in the profile
 
-Treat these as default acceptable locations unless the user later narrows the scope:
-- Cairo
-- Egypt
-- UAE
-- Saudi Arabia
-- Qatar
-- Bahrain
-- Kuwait
-- Jordan
-- Worldwide remote
+### In scope
 
-Prioritize locations in this order:
-1. Cairo, Egypt
-2. Egypt-wide
-3. Worldwide remote
-4. UAE / Saudi Arabia / Qatar / Bahrain / Kuwait / Jordan
+**1. Worldwide remote** — any country, provided the role is genuinely remote. Watch for
+postings that say "remote" but restrict hiring to a region (e.g. "Remote (US only)",
+"must be authorized to work in the US") — those are **out of scope**, because the
+restriction is what matters, not the word "remote".
 
-Flag rather than auto-reject:
-- Other MENA locations not listed above
-- Relocation-heavy roles outside the target geography
+**2. Middle East** — Egypt (Cairo, Giza, Alexandria), UAE, Saudi Arabia, Qatar, Bahrain,
+Kuwait, Oman, Jordan, Lebanon.
+
+**3. Europe** — EU/EEA plus the UK and Switzerland. Highest-volume markets for this
+profile: Netherlands, Germany, Ireland, UK, Spain, Portugal, Poland, Sweden, Switzerland,
+Denmark, Czechia, Estonia.
+
+### Priority order
+
+1. Worldwide / EMEA-wide **remote**
+2. **Cairo & Egypt** (onsite, hybrid or remote)
+3. **GCC and wider Middle East**
+4. **Europe** where the posting states remote-from-outside, **visa sponsorship**, or a
+   **relocation package**
+5. **Europe onsite/hybrid** that is silent on work rights — still include, but expect the
+   Eligibility Gate to mark it unverified
+
+### Out of scope — skip rather than flag
+
+- North and South America, Asia-Pacific, and Africa outside Egypt, **unless** the posting
+  is worldwide remote
+- Any posting restricting applicants to citizens or permanent residents of a country the
+  candidate does not hold status in
+
+### Europe and work authorization — read before ranking European roles
+
+The candidate is based in **Cairo, Egypt** and the profile records **no EU/UK work
+rights**. Per `04-job-evaluation.md`'s Eligibility Gate, a posting that is *silent* on work
+rights is **PROCEED-but-unverified**, not a rejection — so European roles stay in the pool
+rather than being filtered out here.
+
+To keep that pool useful rather than noisy:
+- **Prefer** postings containing "visa sponsorship", "sponsorship available", "work
+  permit", "relocation package", "relocation support", or "remote (EU)" / "remote (EMEA)".
+- **Flag, do not drop**, European onsite roles that say nothing about sponsorship — the
+  Eligibility Gate marks them unverified and the user decides.
+- **Hard-fail only** on explicit wording: "must hold EU citizenship", "existing right to
+  work in the UK required", "no sponsorship available". Quote the line when you do.
 
 ## Experience / Seniority Filter
 
@@ -181,7 +216,19 @@ Your working languages and levels are in CLAUDE.md's Languages table. When filte
 
 ## Date Filter
 
-Only include jobs posted within the last 14 days, or with an application deadline that has not yet passed. If a posting date cannot be determined, include it but flag it as `date unknown`.
+**Only include jobs posted within the last 7 days** ("last week" — set by the user,
+2026-09-05).
+
+- Pass the window to each portal's own recency flag where one exists: `--jobage 7` for
+  `linkedin-search`, `wuzzuf-search` and `freehire-search`; the equivalent documented flag
+  elsewhere. Never invent a flag a portal's `SKILL.md` does not document — the CLIs reject
+  unknown flags.
+- For portals with **no** recency flag, filter client-side after the call: every portal's
+  search output carries a `date` field, so drop results older than 7 days.
+- A posting whose date cannot be determined is **included but flagged `date unknown`** —
+  do not silently discard it.
+- A posting inside the window whose **application deadline has already passed** is still
+  excluded.
 
 ## Adapting Queries
 

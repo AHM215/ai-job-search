@@ -4,31 +4,23 @@ framework_version: 1.2.6
 
 # Job Evaluation Framework
 
-<!-- SETUP: Skill match areas and career goals are personalized by running /setup -->
+## Eligibility Gate - run before scoring
 
-## Eligibility Gate — run before scoring
-
-If the candidate is not a citizen or permanent resident of the country they are applying in, run this first. It is a hard filter, not a scoring dimension, and it is separate from work-permit *timing*: timing asks "can they work the required hours yet?", eligibility asks "are they permitted to hold this job at all?". A candidate can pass timing and still be categorically excluded.
-
-Read the posting's eligibility / work rights / "who can apply" section **verbatim** and classify:
+If the posting has citizenship, permanent-residency, clearance, or work-rights requirements, read that section verbatim before scoring.
 
 | Posting wording | Verdict |
 |-----------------|---------|
-| Names a **citizenship or permanent-residency requirement** ("must be a citizen of X", "permanent resident", "PR required", "full working rights" where the employer means citizen/PR) | **FAIL — hard stop.** Do not score, do not draft. Quote the exact wording back to the user. |
-| Requires a **security clearance** at any level | **FAIL** in most countries, since clearance is normally gated on citizenship. Verify the specific scheme rather than assuming. |
-| **Explicitly names** the candidate's permit class, or says "international applicants welcome", "visa holders considered", "we sponsor" | **PASS** — verified acceptance. Worth noting as a positive in the application. |
-| **Silent** on citizenship or residency | **PROCEED, but mark unverified.** Check the employer's own careers or international-applicant page before drafting. |
+| Requires citizenship, permanent residency, or an equivalent hard work-rights status | **FAIL - hard stop** |
+| Requires a security clearance that the candidate is unlikely to qualify for without citizenship | **FAIL unless verified otherwise** |
+| Explicitly welcomes international applicants or names an eligible visa/work-permit path | **PASS** |
+| Silent on work rights | **PROCEED, but mark unverified** |
 
-**Two rules that are easy to get wrong:**
+Ahmed's CV confirms:
+- Current location: **Cairo, Egypt**
+- Current employment includes a **remote** role
+- No visa, relocation, or commute constraints are stated in the CV
 
-1. **Silence is not permission.** Large graduate programs frequently gate eligibility on their own website rather than in the job ad. Highest-risk categories: professional-services firms, government and defence, banking, telecommunications, and anything touching critical infrastructure.
-2. **A company-wide "we accept international applicants" statement is not role-level permission.** The common pattern is a general welcome followed by a *named list* of the specific programs or service lines it covers. Confirm the **specific posting or stream** appears on that list before drafting.
-
-**Report an eligibility failure to the user with the quoted source** rather than silently dropping the role. They may know something about their own status that the profile does not record.
-
-If the candidate's permit also constrains *hours* or *start date* (a student visa with a term-time cap, a permit that begins on graduation), record that as a second gate under this section during `/setup`, with the specific dates. Do not merge it with the eligibility question above — they fail for different reasons and need different answers.
-
-A role that fails this gate is not scored and not drafted. Everything below applies only to roles that pass it.
+Do not assume broader work authorization, relocation willingness, or travel availability without user confirmation.
 
 ## Language Gate — run before scoring
 
@@ -51,103 +43,146 @@ Judge the level comparison the same way you judge everything else in this framew
 Evaluate each job posting against these five dimensions:
 
 ### 1. Technical Skills Match (0-100)
-How well do the required/preferred skills align with the candidate's capabilities?
+How well do the required and preferred skills align with the candidate's documented capabilities?
 
 | Score | Meaning |
 |-------|---------|
-| 80-100 | Core requirements are primary skills |
-| 60-79 | Most requirements match, 1-2 gaps that are learnable |
-| 40-59 | Partial match, significant upskilling needed |
+| 80-100 | Core requirements match primary documented strengths |
+| 60-79 | Most requirements match, with limited learnable gaps |
+| 40-59 | Partial match, meaningful upskilling needed |
 | 0-39 | Fundamental mismatch |
 
-**Strong match areas:** [YOUR_PRIMARY_SKILLS]
-**Moderate match areas:** [YOUR_SECONDARY_SKILLS]
-**Weak match areas:** [SKILLS_YOU_LACK]
+**Strong match areas:**
+- Python
+- LLM applications
+- RAG systems
+- Multi-agent architectures
+- LangGraph
+- LangChain
+- FastAPI
+- Vector databases and retrieval systems
+- Conversational AI and chatbots
+- Arabic NLP and speech-related ML
+
+**Moderate match areas:**
+- AWS deployment
+- Docker and application infrastructure
+- OCR pipelines
+- MLflow, LangFuse, Arize Phoenix
+- Fine-tuning, reranking, semantic caching, and vector-search optimization
+- Botpress and SaaS integration work
+
+**Weak match areas:**
+- Skills not evidenced in the CV
+- Roles centered on stacks outside Python / applied AI / ML / NLP
+- Requirements that depend on formal experience not shown in the CV, even if adjacent project exposure exists
 
 ### 2. Experience Match (0-100)
 Does work history align with what they're looking for? Match on the function and nature of the work performed, not the literal job title - a "Data Consultant" and a "Data Scientist" role can be functionally identical.
 
 | Score | Meaning |
 |-------|---------|
-| 80-100 | Direct experience in the same domain and role type |
-| 60-79 | Related experience, transferable skills clear |
-| 40-59 | Adjacent experience, would need to make the case |
+| 80-100 | Direct experience in the same role type or problem space |
+| 60-79 | Related experience with clear transferability |
+| 40-59 | Adjacent experience, case must be argued carefully |
 | 0-39 | Unrelated experience |
 
-**Strong:** [YOUR_DIRECT_EXPERIENCE_DOMAINS]
-**Moderate:** [YOUR_ADJACENT_EXPERIENCE]
-**Entry-level:** [ROLES_WITH_LIMITED_EXPERIENCE]
+**Strong:**
+- AI Engineer roles
+- Production LLM or agentic-system work
+- RAG and retrieval workflows
+- Chatbot and conversational AI delivery
+- Applied NLP and speech systems
+- Document automation and OCR-driven pipelines
 
-### 3. Behavioral/Culture Fit (0-100)
-Does the role and company culture match the behavioral profile?
+**Moderate:**
+- MLOps-adjacent work around deployment, monitoring, and scalable services
+- Developer tooling and MCP-related work supported mainly by projects
+- Research-leaning NLP or ML roles that still value applied delivery
+
+**Limited or project-weighted evidence:**
+- Roles where the strongest evidence comes from independent projects rather than employment
+- Specialized sign-language / computer-vision roles
+- Pure research roles demanding publications, which are not listed in the CV
+
+### 3. Behavioral / Culture Fit (0-100)
+The CV does not provide a formal behavioral profile, so score this dimension cautiously.
 
 | Score | Meaning |
 |-------|---------|
-| 80-100 | Culture strongly matches behavioral preferences |
-| 60-79 | Mixed signals but mostly compatible |
-| 40-59 | Some friction areas |
-| 0-39 | Significant culture mismatch |
+| 80-100 | Posting culture appears well matched to the work style evidenced in the CV |
+| 60-79 | Mostly compatible, with limited unknowns |
+| 40-59 | Mixed signals or important unknowns |
+| 0-39 | Clear mismatch or repeated red flags |
 
-**Red flags to research:** Department disorganization, work dominated by maintenance over development, poor chemistry with leadership, culture mismatches. Check reviews, media coverage, LinkedIn connections, and network contacts for insider perspective.
+**Evidence-backed tendencies from the CV:**
+- Production-oriented applied AI work
+- Comfort with end-to-end system building
+- Interest in cost efficiency and low-latency inference
+- Ability to work across multiple tools, services, and deployment layers
+
+**Unknown from the CV:**
+- Preferred management style
+- Appetite for travel
+- Strong culture preferences
+- Formal leadership ambitions
+
+Where culture evidence is weak, say so explicitly instead of filling the gap with assumptions.
 
 ### 4. Location & Logistics (Pass/Fail + Notes)
-- Within commute range: PASS
-- Remote with occasional office: PASS
-- Requires relocation: FAIL (deal-breaker)
-- Frequent international travel: FLAG (discuss with user)
+- Cairo, Egypt-based roles: typically **PASS**
+- Remote roles: **PASS** if timezone and work-rights constraints are acceptable
+- Roles requiring relocation: **FLAG**, not automatic fail, because the CV does not state a relocation preference
+- Roles with heavy travel: **FLAG**
+- Roles restricted to another country without sponsorship or remote arrangement: usually **FAIL**
 
 ### 5. Career Alignment & Motivation (0-100)
-Does this role advance career goals and contain tasks that energize?
+Use the CV's explicit specialization and recurring work themes as the alignment baseline.
 
 | Score | Meaning |
 |-------|---------|
-| 80-100 | Strongly aligned with career direction, clear growth path |
-| 60-79 | Good role but only partially aligned with long-term goals |
-| 40-59 | Decent job but doesn't build toward career goals |
-| 0-39 | Dead end or backwards step |
+| 80-100 | Strongly aligned with the documented specialization and strongest evidence |
+| 60-79 | Good role with some adjacent elements |
+| 40-59 | Partially aligned, but stretches beyond the profile's center of gravity |
+| 0-39 | Mostly outside the candidate's documented direction |
 
-**Career goals:**
-- [YOUR_CAREER_GOAL_1]
-- [YOUR_CAREER_GOAL_2]
-- [YOUR_CAREER_GOAL_3]
+**Career direction evidenced by the CV:**
+- AI engineering centered on LLM applications
+- RAG systems and retrieval workflows
+- Multi-agent architectures
+- Conversational AI and chatbot products
+- Applied NLP and speech systems
 
-**Motivation filter:** Evaluate not just whether you *can* do the tasks, but whether the tasks will *energize* you. Consider:
-- Tasks that energize: [YOUR_ENERGIZING_TASKS]
-- Tasks that drain: [YOUR_DRAINING_TASKS]
-- Non-task factors: leadership style, department culture, company values, degree of autonomy
+**Tasks likely to energize, based on the CV:**
+- Building production AI systems
+- Designing LLM, RAG, and agentic workflows
+- Improving latency, scalability, and end-to-end delivery
+- Working on Arabic NLP, speech, or document-centric AI use cases
 
-**Life situation alignment:** Consider personal constraints:
-- **Security**: [YOUR_FINANCIAL_SITUATION_CONTEXT]
-- **Flexibility**: [YOUR_SCHEDULE_CONSTRAINTS]
-- **Professional development**: [YOUR_GROWTH_PRIORITIES]
+**Unknown or unconfirmed:**
+- Salary expectations
+- Preferred company size
+- Appetite for relocation
+- Desired leadership scope
+
+If a role is far from the AI / LLM / NLP / agentic core, score alignment lower unless the user explicitly says they want a pivot.
 
 ### 6. Salary Benchmark (Optional)
 
 If the salary lookup tool is configured (`salary_data.json` exists), look up the company:
-```
+```bash
 python salary_lookup.py "<Company Name>" --json
 ```
 
-If a city is known from the posting, add `--city "<City>"` to narrow results.
+If a city is known from the posting, add `--city "<City>"`.
 
-Present findings as:
-```
-### Salary Benchmark
-| Metric | Value |
-|--------|-------|
-| [Category] index | XX.X (+/-X.X% vs baseline) |
-| Overall index | XX.X (+/-X.X% vs baseline) |
-```
-
-Interpret results relative to the baseline defined in the data file's metadata. For index-based data, higher typically means above-market compensation.
-
-If the salary tool is not configured, skip this section.
+If the tool is not configured, skip this section.
 
 ## Output Format
 
 Present the evaluation as:
 
-```
+```text
 ## Job Fit Evaluation: [Role] at [Company]
 
 | Dimension | Score | Notes |
@@ -155,7 +190,7 @@ Present the evaluation as:
 | Technical Skills | XX/100 | [brief note] |
 | Experience Match | XX/100 | [brief note] |
 | Behavioral Fit | XX/100 | [brief note] |
-| Location | PASS/FAIL | [brief note] |
+| Location | PASS/FAIL/FLAG | [brief note] |
 | Career Alignment | XX/100 | [brief note] |
 
 **Overall Score: XX/100** (weighted average of scored dimensions)
@@ -169,14 +204,14 @@ Present the evaluation as:
 - [bullet points]
 
 ### Recommendation
-[1-2 sentences: apply/skip/apply with caveats]
+[1-2 sentences: apply / skip / apply with caveats]
 
 ### Company Research Checklist
-- [ ] Checked company website (mission, values, recent news)
-- [ ] Checked review sites (Glassdoor, Jobindex, etc.)
-- [ ] Checked LinkedIn for team size, recent hires, connections
-- [ ] Checked media for restructuring, growth, or workplace issues
-- [ ] Identified network contacts who may know the team/manager
+- [ ] Checked company website
+- [ ] Checked reviews or public signals about the team/company
+- [ ] Checked LinkedIn for team context, recent hires, or relevant contacts
+- [ ] Checked for work-rights or location restrictions
+- [ ] Separated employment evidence from project evidence in the reasoning
 ```
 
 ## Company Research Cache
@@ -237,33 +272,33 @@ consumer benefits.
 - Behavioral Fit: 15%
 - Career Alignment: 30%
 
-(Location is pass/fail, not weighted)
+Location is pass/fail/flag, not weighted.
 
 ## Thresholds
 - **Strong Fit** (75+): Definitely apply, tailor everything
-- **Good Fit** (60-74): Apply, address gaps in cover letter
-- **Moderate Fit** (45-59): Consider carefully, discuss with user
-- **Weak Fit** (30-44): Probably skip unless strategic reasons
+- **Good Fit** (60-74): Apply, address gaps honestly
+- **Moderate Fit** (45-59): Apply selectively or discuss first
+- **Weak Fit** (30-44): Usually skip unless strategically useful
 - **Poor Fit** (<30): Skip
 
-## Pre-Application: Call the Employer (Best Practice)
+## Pre-Application: Call the Employer
 
-Before writing the application, consider whether the candidate should call the contact person listed in the posting. **Only call if there are substantive questions** - never call just to "be remembered."
+Suggest calling only when the posting leaves important questions unanswered.
 
 ### When to Suggest Calling
-- The posting has unclear or ambiguous requirements
-- It's unclear which competencies are essential vs. nice-to-have
-- The role description is vague about day-to-day tasks
-- There's a named contact person who invites questions
+- Requirements are ambiguous
+- It is unclear whether a listed skill is essential or nice-to-have
+- The work-rights, location, or remote expectations are unclear
+- A named contact explicitly invites questions
 
 ### Good Questions to Ask
 - "What are the primary challenges in this role?"
-- "How is time typically divided across the listed responsibilities?"
-- "Which competencies are most critical for success in this position?"
-- "What does success look like in the first 6-12 months?"
+- "Which requirements are essential on day one?"
+- "How much of the role is hands-on implementation versus coordination?"
+- "What would success look like in the first 6 to 12 months?"
 
 ### Rules for the Call
-- Prepare a 30-second "elevator pitch" about your background in case they ask
-- The call's purpose is **gathering information**, not delivering a pitch
-- Take notes - use what you learn to tailor the application
-- Reference the conversation naturally in the cover letter ("After speaking with [name], I was especially drawn to...")
+- Prepare a short background summary rooted in the real CV
+- Use the call to gather information, not to oversell
+- Take notes and use them to tailor the application
+- Reference the conversation naturally if it materially helped clarify fit

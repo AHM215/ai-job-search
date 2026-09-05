@@ -1,0 +1,147 @@
+\documentclass[letterpaper,11pt]{article}
+\setlength{\footskip}{4.08003pt}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage[scale=0.90,lf]{FiraMono}
+
+\definecolor{light-grey}{gray}{0.83}
+\definecolor{dark-grey}{gray}{0.3}
+\definecolor{text-grey}{gray}{.08}
+\definecolor{SECTIONCOLOR}{RGB}{30,64,175}
+
+\DeclareRobustCommand{\ebseries}{\fontseries{eb}\selectfont}
+\DeclareTextFontCommand{\texteb}{\ebseries}
+
+\usepackage{contour}
+\usepackage[normalem]{ulem}
+\renewcommand{\ULdepth}{1.8pt}
+\contourlength{0.8pt}
+\newcommand{\myuline}[1]{%
+  \uline{\phantom{#1}}%
+  \llap{\contour{white}{#1}}%
+}
+
+\usepackage{tgheros}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage[T1]{fontenc}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{0in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+    \bfseries \vspace{2pt} \raggedright \large
+}{}{0em}{}[\color{light-grey} {\titlerule[2pt]} \vspace{-4pt}]
+
+\color{text-grey}
+
+\hypersetup{
+    colorlinks=true,
+    urlcolor=SECTIONCOLOR
+}
+
+%-------------------------------------------
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge Ahmed Ashraf Hagras} \\ \vspace{5pt}
+    \small \faPhone* \texttt{(+20) 1206303234} \hspace{1pt} $|$
+    \hspace{1pt} \faEnvelope \hspace{2pt} \href{mailto:hagras.cs.eng@gmail.com}{\texttt{hagras.cs.eng@gmail.com}} \hspace{1pt} $|$
+    \hspace{1pt} \faLinkedin \hspace{2pt} \href{https://www.linkedin.com/in/ahm215}{\texttt{ahm215}} \hspace{1pt} $|$
+    \hspace{1pt} \faGithub \hspace{2pt} \href{https://github.com/AHM215}{\texttt{AHM215}} \hspace{1pt} $|$
+    \hspace{1pt} \faMapMarker* \hspace{2pt}\texttt{Cairo, Egypt}
+    \\ \vspace{-3pt}
+\end{center}
+
+%-----------POSITION & RECIPIENT-----------
+\vspace{6pt}
+\begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{Application for: AI/ML Software Engineer} & {\color{dark-grey}\small \today} \\
+    \textit{Siemens Digital Industries Software --- Cairo, Egypt} & {\color{dark-grey}
+\end{tabular*}
+\vspace{4pt}
+
+%-----------WHY SIEMENS-----------
+\section{WHY I WANT TO BUILD AI AT SIEMENS}
+
+\small{
+I'm a Python developer who works on Large Language Models, Machine Learning, and
+full-stack web applications, and I care about the part that comes after the demo:
+getting an AI system to actually hold up in production.
+
+\vspace{8pt}
+Right now, I build agentic systems in production, including one that serves users
+at scale for one of Egypt's most popular e-commerce brands, connected across its
+Meta channels (WhatsApp, Messenger, Instagram) and a website widget. I own it end
+to end --- design, orchestration logic with LangGraph, deployment, and the
+monitoring that keeps it reliable once real people are using it every day. That's
+the same concept-to-deployment ownership this role is asking for, and it spans
+both the LLM/ML side and the backend and web development side, which is exactly
+the mix Siemens is looking for.
+
+\vspace{8pt}
+Alongside that, I've built a Retrieval-Augmented Generation (RAG) pipeline
+indexing over \textbf{50,000 documents} with under \textbf{200\,ms} latency, and
+deployed FastAPI web services and APIs on AWS ECS using Docker containers. I also
+work with Machine Learning and Deep Learning libraries such as scikit-learn and
+PyTorch, and I'm comfortable picking up new frameworks (Keras, Kubernetes,
+ReactJS/Angular) when a project calls for it.
+
+\vspace{8pt}
+What draws me specifically to Siemens EDA is the scale and rigor of the problem:
+software that engineering teams around the world rely on to design chips, boards,
+and systems. That's a higher bar than most products get held to, and it's the
+kind of environment I want to grow in --- owning features from design and code
+review through testing and release, alongside strong technical peers.
+}
+
+%-----------WHAT I BRING-----------
+\section{WHAT I BRING}
+\begin{itemize}[leftmargin=0.15in]
+    \item\small{\textbf{Large Language Models, NLP \& Agentic AI:} Multi-agent orchestration with LangGraph and a custom MCP Server; production agentic system serving users at scale for a leading e-commerce brand across Meta channels; LangChain, CrewAI, DSPy, OpenAI and Claude APIs.}
+    \item\small{\textbf{RAG, Machine Learning \& Deep Learning:} Enterprise RAG pipeline with FAISS and sentence-transformers --- 92\% retrieval precision at k=5, $<$200\,ms latency, 50,000+ indexed documents; applied ML/DL with PyTorch and scikit-learn, fine-tuning with LoRA/QLoRA.}
+    \item\small{\textbf{Full-Stack Web Development:} Production FastAPI backends and REST APIs handling 100+ concurrent requests at $<$1\,s response time; working knowledge of JavaScript and front-end frameworks (ReactJS/Angular) to ship complete features end to end.}
+    \item\small{\textbf{Cloud, Containers \& Deployment:} AWS Certified (ECS, Lambda, S3), Docker containerization with working knowledge of Kubernetes orchestration; deploying, monitoring, and maintaining production systems with LangFuse and Arize Phoenix.}
+    \item\small{\textbf{Software Engineering Fundamentals:} Strong grounding in data structures, software architecture, and design principles; Git-based version control and clean, maintainable code as standard practice.}
+\end{itemize}
+
+%-----------CLOSING-----------
+\section{CLOSING}
+\small{
+I have attached my CV and GitHub profile for reference. I would welcome the
+opportunity to speak with your team and discuss how I can contribute to Siemens
+Digital Industries Software's mission of transforming the everyday through
+innovative, AI-driven engineering solutions.
+}
+
+\vspace{1cm}
+\noindent
+{\small Sincerely,} \\[0.5cm]
+\textbf{Ahmed Ashraf Hagras}
+
+%-------------------------------------------
+\end{document}

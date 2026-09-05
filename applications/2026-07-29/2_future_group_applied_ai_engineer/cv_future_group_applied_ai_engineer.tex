@@ -1,0 +1,252 @@
+%-------------------------
+% ATS-Optimized Resume in Latex
+% Based off of: https://github.com/jakeryang/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+\setlength{\footskip}{4.08003pt}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+
+% fontawesome
+\usepackage{fontawesome5}
+
+% fixed width
+\usepackage[scale=0.90,lf]{FiraMono}
+
+% light-grey
+\definecolor{light-grey}{gray}{0.83}
+\definecolor{dark-grey}{gray}{0.3}
+\definecolor{text-grey}{gray}{.08}
+\definecolor{SECTIONCOLOR}{RGB}{30,64,175}
+
+\DeclareRobustCommand{\ebseries}{\fontseries{eb}\selectfont}
+\DeclareTextFontCommand{\texteb}{\ebseries}
+
+% custom underline
+\usepackage{contour}
+\usepackage[normalem]{ulem}
+\renewcommand{\ULdepth}{1.8pt}
+\contourlength{0.8pt}
+\newcommand{\myuline}[1]{%
+  \uline{\phantom{#1}}%
+  \llap{\contour{white}{#1}}%
+}
+
+% custom font: helvetica-style
+\usepackage{tgheros}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage[T1]{fontenc}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{0in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+    \bfseries \vspace{2pt} \raggedright \large
+}{}{0em}{}[\color{light-grey} {\titlerule[2pt]} \vspace{-4pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-1pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & {\color{dark-grey}\small #2}\vspace{1pt}\\
+      \textit{#3} & {\color{dark-grey} \small #4}\\
+    \end{tabular*}\vspace{-4pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+      #1 & {\color{dark-grey}\small #2} \\
+    \end{tabular*}\vspace{-4pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{0pt}}
+
+\color{text-grey}
+
+\hypersetup{
+    colorlinks=true,
+    urlcolor=SECTIONCOLOR
+}
+
+%-------------------------------------------
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge Ahmed Ashraf Hagras} \\ \vspace{5pt}
+    \small \faPhone* \texttt{(+20) 1206303234} \hspace{1pt} $|$
+    \hspace{1pt} \faEnvelope \hspace{2pt} \href{mailto:hagras.cs.eng@gmail.com}{\texttt{hagras.cs.eng@gmail.com}} \hspace{1pt} $|$
+    \hspace{1pt} \faLinkedin \hspace{2pt} \href{https://www.linkedin.com/in/ahm215}{\texttt{ahm215}} \hspace{1pt} $|$
+    \hspace{1pt} \faGithub \hspace{2pt} \href{https://github.com/AHM215}{\texttt{AHM215}} \hspace{1pt} $|$
+    \hspace{1pt} \faMapMarker* \hspace{2pt}\texttt{Cairo, Egypt}
+    \\ \vspace{-3pt}
+\end{center}
+
+%-----------SUMMARY-----------
+\section{SUMMARY}
+\small{
+\textbf{Applied AI Engineer} specializing in LLM applications, RAG systems, and multi-agent architectures built for practical production use. Built LangGraph-based AI systems in a live SaaS environment, shipped an AI WhatsApp chatbot with less than 2.5 seconds end-to-end latency, and engineered OCR-backed workflows with pgvector and Celery. Brings direct Python, FastAPI, vector-database, and MCP-adjacent project experience for AI-first product delivery.
+}
+
+%-----------EDUCATION-----------
+\section{EDUCATION}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Tanta University}{Oct. 2019 -- Jul. 2024}
+      {Bachelor of Science, Computer Science and Automatic Control Engineering}{Egypt}
+      \resumeItemListStart
+        \resumeItem{\textbf{Relevant Coursework}: Machine Learning, Deep Learning, Signal Processing, Control Systems}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{EXPERIENCE}
+  \resumeSubHeadingListStart
+
+      \resumeSubheading
+      {\textbf{AI Engineer}}{Apr. 2026 -- Present}
+      {\textbf{Trigz Ai}}{Remote}
+    \resumeItemListStart
+        \resumeItem{Built \textbf{multi-agent AI systems} with \textbf{LangGraph} integrated into a \textbf{SaaS platform} across \textbf{Magento}, \textbf{Salla}, and \textbf{Zid}; delivered an \textbf{AI WhatsApp chatbot} via \textbf{Meta API} with \textbf{$<$2.5s} end-to-end response time and \textbf{OCR pipelines} for structured data extraction.}
+        \resumeItem{Engineered end-to-end \textbf{document automation workflows} with \textbf{pgvector}, \textbf{Celery}, and \textbf{advanced prompt management}, integrating OCR outputs into scalable \textbf{agentic pipelines}.}
+    \resumeItemListEnd
+    
+    \resumeSubheading
+      {\textbf{AI Engineer}}{Mar. 2024 -- Aug. 2024}
+      {\textbf{MT College}}{Cairo, Egypt}
+      \resumeItemListStart
+  \resumeItem{Built an \textbf{Arabic Speech-to-Text system} (SpeechBrain, MFCC) on \textbf{50K+ audio samples}, achieving \textbf{MLT 40.71} and \textbf{Top 10} out of 50+ teams — 2024 national competition. \textnormal{\small $|$ \href{https://www.linkedin.com/posts/ahm215_arabic-speechrecognition-speechbrain-activity-7216408459758432258-4gKf}{LinkedIn}}}
+  \resumeItem{Integrated \textbf{Speaker Diarization} using \textbf{pyannote 3.1} for multi-speaker segmentation in NLP pipelines. \textnormal{\small $|$ \href{https://www.linkedin.com/posts/ahm215_ai-speechdiarization-asr-activity-7227350399966433280-Yqz0}{LinkedIn}}}
+  \resumeItem{Fine-tuned an \textbf{Arabic Text Summarization} model (Hugging Face, TensorFlow) on \textbf{10K+ articles}; achieved \textbf{ROUGE-L 0.42} and \textbf{Top 15} — 2023 national competition. \textnormal{\small $|$ \href{https://github.com/AHM215/AR-Text-Summarization-Competition}{GitHub}}}
+\resumeItemListEnd
+      
+    \resumeSubheading
+      {\textbf{Ai Engineer Intern}}{Jan. 2023 -- Nov. 2023}
+      {\textbf{Instant}}{Cairo, Egypt}
+      \resumeItemListStart
+        \resumeItem{Built ML/Deep Learning skills in model training, evaluation, and optimization while collaborating with senior engineers; familiar with core NLP techniques including tokenization, embeddings, and sequence modeling.}
+        \resumeItem{Applied data preprocessing and feature engineering to improve model performance.}
+\resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{PROJECTS}
+    \resumeSubHeadingListStart
+    
+      \resumeProjectHeading
+          {\textbf{TravelAi Chatbot} \textnormal{\small $|$ \href{https://tinyurl.com/y6hfejvw}{LinkedIn}}}{2026}
+          \resumeItemListStart
+            \resumeItem{Built and deployed a production conversational chatbot using \textbf{Botpress} to query real-time flight and hotel availability and enable in-chat booking; integrated a \textbf{PostgreSQL} database to persist chat sessions and reservations across conversations.}
+            \resumeItem{Engineered multi-intent dialogue flows with entity recognition (\textbf{SetFit + GLiNER}); deployed backend services via \textbf{FastAPI} on \textbf{AWS ECS} for scalable, production-ready performance.}
+          \resumeItemListEnd 
+          % \vspace{20pt}
+          
+        \resumeProjectHeading
+            {\textbf{RAG-App} \textnormal{\small $|$ \href{\detokenize{https://www.linkedin.com/posts/ahm215_rag-llm-genai-ugcPost-7459016528022155264-gLIT?utm_source=share&utm_medium=member_desktop&rcm=ACoAADYmHWIBf4XZO2d5xNvZ54mqll1Tcll-uRA}}{LinkedIn}}}{2024}
+            \resumeItemListStart
+                \resumeItem{Architected a modular RAG service with \textbf{FastAPI}, \textbf{PGVector}, and \textbf{Qdrant}; designed pluggable \textbf{OpenAI}/\textbf{Cohere} backends with query rewriting, \textbf{HyDE}, and two-stage \textbf{reranking} (cross-encoder \& LLM) to reduce irrelevant context.}
+                \resumeItem{Containerized the full stack via \textbf{Docker Compose} with async \textbf{Celery} workers backed by \textbf{Redis} and \textbf{RabbitMQ}; instrumented with \textbf{Prometheus} and \textbf{Grafana} for observability.}
+            \resumeItemListEnd
+            
+      \resumeProjectHeading
+          {\textbf{LeetCode MCP Agent} \textnormal{\small $|$ \href{https://www.linkedin.com/posts/ahm215_ai-machinelearning-crewai-activity-7349437367713202177-a8Lv}{LinkedIn}}}{2025}
+          \resumeItemListStart
+            \resumeItem{Architected and benchmarked multi-agent systems using \textbf{LangGraph} and \textbf{CrewAI}; ran \textbf{Ollama} local models for cost-free inference; demonstrated LangGraph's superiority in stateful, controllable agent workflows.}
+            \resumeItem{Built a custom \textbf{MCP Server} compatible with any MCP-enabled agent (e.g.\ Claude Code); autonomously solved \textbf{200+ medium-difficulty LeetCode problems} via multi-step reasoning.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Sign Language Translator} \textnormal{\small $|$ \href{https://www.linkedin.com/posts/sarakhataam_signlanguage-computervision-ai-ugcPost-7225870786018893824-F43u}{LinkedIn}}}{2024}
+          \resumeItemListStart
+            \resumeItem{Built a sign language video classification system using \textbf{MediaPipe} keypoint extraction with \textbf{LSTM} and transformer architectures for robust word-level sign recognition.}
+            \resumeItem{Implemented a text-to-sign module using semantic search to concatenate sign snippets into coherent sequences; delivered a real-time \textbf{Flask/Gradio} interface for end-user interaction.}
+          \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{SKILLS}
+ \begin{itemize}[leftmargin=0in, label={}]
+    \small{\item{
+     \textbf{Languages} {: Python, SQL (PostgreSQL, MySQL), OOP}\vspace{2pt} \\
+     \textbf{AI / ML} {: PyTorch, Scikit-Learn, Hugging Face Transformers, Pandas, TensorFlow}\vspace{2pt} \\
+     \textbf{GenAI \& LLMs} {: RAG, LangChain, LangGraph, CrewAI, DSPy, Ollama, OpenAI API, Claude API}\vspace{2pt} \\
+     \textbf{Retrieval \& Agent Techniques} {: Prompt Engineering, Fine-Tuning (LoRA, QLoRA), Semantic Caching, Reranking, Vector Search Optimization}\vspace{2pt} \\
+     \textbf{Vector Databases} {: Qdrant, PGvector, FAISS, Chroma}\vspace{2pt} \\
+     \textbf{MLOps \& Cloud} {: Docker, AWS (ECS, Lambda, S3), FastAPI, MLflow}\vspace{2pt}\\
+     \textbf{Monitoring \& Eval} {: LangFuse, Arize Phoenix}\vspace{2pt} \\
+     \textbf{Tools} {: Botpress, MCP, Git, Gradio, Jupyter, Linux}
+    }}
+ \end{itemize}
+
+%-----------CERTIFICATIONS-----------
+\section{CERTIFICATIONS}
+\begin{itemize}[leftmargin=0.15in]
+  \resumeItem{\textbf{AWS Certified Cloud Practitioner} -- Amazon Web Services, 2024 \textnormal{\small $|$ \href{https://www.linkedin.com/posts/ahm215_aws-certified-cloud-practitioner-was-issued-activity-7274436150700769281-TAJd}{View Credential}}}
+\end{itemize}
+
+%-----------VOLUNTEER EXPERIENCE-----------
+\section{VOLUNTEER EXPERIENCE}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {\textbf{Head of Media}}{Oct. 2021 -- Jul. 2023}
+      {\textbf{Ma3an Family}}{}
+      \resumeItemListStart
+        \resumeItem{Led media strategy and team execution, overseeing graphic design, video editing, and multimedia content delivery across multiple campaigns.}
+        \resumeItem{Established partnerships with media outlets and influencers; leveraged performance metrics to refine campaign strategies and improve audience engagement.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------LANGUAGES-----------
+\section{LANGUAGES}
+ \begin{itemize}[leftmargin=0in, label={}]
+    \small{\item{
+     \textbf{Arabic} {: Native} \hspace{24pt}
+     \textbf{English} {: Professional Working Proficiency}
+    }}
+ \end{itemize}
+
+%-------------------------------------------
+\end{document}
